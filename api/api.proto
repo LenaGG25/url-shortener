@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package orders;
+option go_package = "./;pb";
+
+service URLShortener {
+  rpc CreateShortUrl (CreateShortUrlRequest) returns (CreateShortUrlResponse) {}
+  rpc GetOriginalUrl (GetOriginalUrlRequest) returns (GetOriginalUrlResponse) {}
+  rpc GetStatistics (GetStatisticsRequest) returns (GetStatisticsResponse) {}
+}
+
+message CreateShortUrlRequest {
+  string original_url = 1;
+}
+
+message CreateShortUrlResponse {
+  string short_url = 1;
+}
+
+message GetOriginalUrlRequest {
+  string short_url = 1;
+}
+
+message GetOriginalUrlResponse {
+  string original_url = 1;
+}
+
+message GetStatisticsRequest {
+  string short_url = 1;
+}
+
+message GetStatisticsResponse {
+  int64 request_number = 1;
+}

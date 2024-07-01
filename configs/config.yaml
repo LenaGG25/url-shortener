@@ -1,0 +1,12 @@
+shortener:
+  max_short_key_size: 6
+
+grpc:
+  port: 9094
+
+db:
+  postgres_host: "postgres"
+
+redis:
+  host: "redis"
+  expiration: "1m"

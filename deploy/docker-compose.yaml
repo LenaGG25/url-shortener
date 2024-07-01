@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:13
+    env_file:
+      - ../configs/.env
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    env_file:
+      - ../configs/.env
+  shortener:
+    container_name: shortener
+    build:
+      context: ../
+      dockerfile: ./build/shortener/Dockerfile
+    image: shortener
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "9094:9094"
